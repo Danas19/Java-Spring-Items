@@ -14,21 +14,16 @@ public class Service {
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 	
 	public static Collection<Item> getItems(ItemRepository itemRepository) {
-		if (itemRepository.findAll().size() == 0) {
-			log.info("! Returning empty list");
-		} else {
-			log.info("Returning list");
-		}
+		log.info("getItems(ItemRepository)"
+				+ " from the class Service was used. Returning collection: "
+					+ itemRepository.findAll() + "\n");
 		return itemRepository.findAll();
 	}
 	
 	public static Item getItem(ItemRepository itemRepository, long id) {
 		Item item = itemRepository.findById(id).orElse(null);
-		if (item != null) {
-			log.info("Returning item: " + item);
-		} else {
-			log.info("! Returning null. No item with id: '" + id + "' was found.");
-		}
+		log.info("getItem(ItemRepository, long) method from class Service "
+				+ "was used. Returning item: " + item + "\n");
 		return item;
 	}
 	
@@ -37,21 +32,23 @@ public class Service {
 		Item item = new Item(createItemCommand.getName(),
 				createItemCommand.getPriceEuros(), createItemCommand.getPriceCents());
 		itemRepository.save(item);
-		log.info("Creatied item: " + item);
+		log.info("createItem(ItemRepository , CreateItemCommand) method from class "
+				+ "Service was used. Returning String: " + "Created item: " + item + "\n");
 		return "Created item: " + item;
 	}
 	
 	public static String deleteItem(ItemRepository itemRepository, long id) {
 		Item item = itemRepository.findById(id).orElse(null);
+		
+		log.info("deleteItem(ItemRepository, long) from class Service was "
+				+ "used. returning String: ");
 		if (item != null) {
 			itemRepository.deleteById(id);
-			log.info("Deleting item: " + item);
-			return "Deleted item: " + item;
+			log.info(item.toString() + "\n");
+			return item.toString();
 		} else {
-			log.info("! Item with id: '" + id + "' was NOT deleted. "
-					+ "There is no item with that id");
-			return "! Item with id: '" + id + "' was NOT deleted. "
-					+ "There is no item with that id";
+			log.info("No item deleted. There is no item with id: " + id + "\n");
+			return "No item deleted. There is no item with id: " + id + "\n";
 		}
 	}
 }
