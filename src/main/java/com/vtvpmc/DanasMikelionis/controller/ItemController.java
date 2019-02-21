@@ -33,8 +33,8 @@ public class ItemController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Get items", notes = "Returns regsitered items.")
 	public Collection<Item> getItems() {
-		log.info("getItems() method was used.\n"
-				+ "returning collection: " + Service.getItems(itemRepository) + "\n");
+		log.info("getItems() method was used passing nothing.\n"
+				+ "Returning collection: " + Service.getItems(itemRepository) + "\n");
 		return Service.getItems(itemRepository);
 	}
 	
@@ -42,8 +42,8 @@ public class ItemController {
 	@ApiOperation(value = "Get item", notes = "Returns item by id")
 	public Item getItem(@PathVariable final long id) {
 		Item itemToBeReturned = Service.getItem(itemRepository, id);
-		log.info("getItem(@PathVariable final long) method was used.\n"
-				+ "Returning Item: " + itemToBeReturned);
+		log.info("getItem(@PathVariable final long) method was used passing: "
+		+ id + "L.\nReturning Item: " + itemToBeReturned);
 		return itemToBeReturned;
 	}
 	
@@ -51,16 +51,16 @@ public class ItemController {
 	public String createItem(@RequestBody @Valid
 			CreateItemCommand createItemCommand) {
 		String createItemString = Service.createItem(itemRepository, createItemCommand);
-		log.info("createItem(@RequestBody @Valid CreateItemCommand) method was used.\n"
-				+ "Returning String: \"" + createItemString + "\"\n");
+		log.info("createItem(@RequestBody @Valid CreateItemCommand) method was used passing: " 
+				+ createItemCommand + ".\nReturning String: \"" + createItemString + "\"\n");
 		return createItemString;
 	}
 	
 	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
 		public String deleteItem(@PathVariable final long id) {
 			String deleteItemString = Service.deleteItem(itemRepository, id);
-			log.info("deleteItem(@PathVariable final long) method was used.\n"
-					+ "returning String: \"" + deleteItemString + "\"\n");
+			log.info("deleteItem(@PathVariable final long) method was used passing: "
+					+ id + "L.\nReturning String: \"" + deleteItemString + "\"\n");
 			return deleteItemString;
 		}
 }

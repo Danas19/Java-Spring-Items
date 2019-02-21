@@ -41,7 +41,7 @@ public class Service {
 		Item item = itemRepository.findById(id).orElse(null);
 		
 		log.info("deleteItem(ItemRepository, long) method was used passing: "
-				+ itemRepository + ", " + id + "L.\nreturning String: \"");
+				+ itemRepository + ", " + id + "L.\nReturning String: \"");
 		if (item != null) {
 			itemRepository.deleteById(id);
 			log.info(item.toString() + "\"\n");
