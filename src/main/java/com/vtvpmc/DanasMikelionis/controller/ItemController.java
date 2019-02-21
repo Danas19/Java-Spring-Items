@@ -33,8 +33,9 @@ public class ItemController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Get items", notes = "Returns regsitered items.")
 	public Collection<Item> getItems() {
-		log.info("getItems() method was used \n\tpassing nothing.\n\t"
-				+ "Returning collection: " + Service.getItems(itemRepository) + ".\n");
+		log.info("getItems() method was used \n\tpassed to this method nothing.\n\t"
+			+ "Passing to Service.getItems(ItemRepository): " + this.itemRepository
+				+ "\n\tReturning collection.\n");
 		return Service.getItems(itemRepository);
 	}
 	
@@ -42,8 +43,10 @@ public class ItemController {
 	@ApiOperation(value = "Get item", notes = "Returns item by id")
 	public Item getItem(@PathVariable final long id) {
 		Item itemToBeReturned = Service.getItem(itemRepository, id);
-		log.info("getItem(@PathVariable final long) method was used \n\tpassing: "
-		+ id + "L.\n\tReturning Item: " + itemToBeReturned);
+		log.info("getItem(@PathVariable final long) method was used \n\tpassed to this method: "
+				+ id + "L.\n\tPassed to Service.getItem(ItemRepository, Long): "
+					+ this.itemRepository + id + "L."
+						+ "\n\tReturning Item: " + itemToBeReturned + "\n");
 		return itemToBeReturned;
 	}
 	
@@ -51,16 +54,21 @@ public class ItemController {
 	public String createItem(@RequestBody @Valid
 			CreateItemCommand createItemCommand) {
 		String createItemString = Service.createItem(itemRepository, createItemCommand);
-		log.info("createItem(@RequestBody @Valid CreateItemCommand) method was used \n\tpassing: " 
-				+ createItemCommand + ".\n\tReturning String: \"" + createItemString + "\"\n");
+		log.info("createItem(@RequestBody @Valid CreateItemCommand) method was used "
+				+ "\n\tpassed to this method: "  + createItemCommand 
+					+ ".\n\tPassed to Service.createItem(ItemRepository, "
+						+ "CreateItemCommand): " + this.itemRepository + createItemCommand
+							+ ".\nReturning String: \"" + createItemString + "\"\n");
 		return createItemString;
 	}
 	
 	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
 		public String deleteItem(@PathVariable final long id) {
 			String deleteItemString = Service.deleteItem(itemRepository, id);
-			log.info("deleteItem(@PathVariable final long) method was used \n\tpassing: "
-					+ id + "L.\n\tReturning String: \"" + deleteItemString + "\"\n");
-			return deleteItemString;
-		}
+			log.info("deleteItem(@PathVariable final long) method was used \n\tpassed to this method: "
+					+ id + "L.\n\tPassed to Service.deleteItem(ItemRepository, Long): "
+							+ this.itemRepository + id + "\n\tReturning String: \""
+								+ deleteItemString + "\"\n");
+		return deleteItemString;
+	}
 }
