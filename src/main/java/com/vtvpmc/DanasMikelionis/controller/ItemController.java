@@ -34,19 +34,27 @@ public class ItemController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Get items", notes = "Returns regsitered items.")
 	public Collection<Item> getItems() {
+		log.info("getItems() method was used.\n"
+				+ "returning collection: " + Service.getItems(itemRepository) + "\n");
 		return Service.getItems(itemRepository);
 	}
 	
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	@ApiOperation(value = "Get item", notes = "Returns item by id")
 	public Item getItem(@PathVariable final long id) {
-		return Service.getItem(itemRepository, id);
+		Item itemToBeReturned = Service.getItem(itemRepository, id);
+		log.info("getItem(@PathVariable final long) method was used.\n"
+				+ "Returning Item: " + itemToBeReturned);
+		return itemToBeReturned;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String createItem(@RequestBody @Valid
 			CreateItemCommand createItemCommand) {
-		return Service.createItem(itemRepository, createItemCommand);
+		String createItemString = Service.createItem(itemRepository, createItemCommand);
+		log.info("createItem(@RequestBody @Valid CreateItemCommand) method was used.\n"
+				+ "Returning String: \"" + createItemString + "\"\n");
+		return createItemString;
 	}
 	
 	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
