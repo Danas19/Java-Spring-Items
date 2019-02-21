@@ -51,8 +51,9 @@ public class ItemController {
 	
 	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
 		public String deleteItem(@PathVariable final long id) {
-			log.info("deleteItem(@PathVariable final long) method was used. "
-					+ "");
-			return Service.deleteItem(itemRepository, id);
+			String deleteItemString = Service.deleteItem(itemRepository, id);
+			log.info("deleteItem(@PathVariable final long) method was used.\n"
+					+ "returning String: \"" + deleteItemString + "\"\n");
+			return deleteItemString;
 		}
 }

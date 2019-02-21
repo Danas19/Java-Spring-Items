@@ -14,15 +14,15 @@ public class Service {
 	
 	public static Collection<Item> getItems(ItemRepository itemRepository) {
 		log.info("getItems(ItemRepository)"
-				+ " method was used. Returning collection: "
-					+ itemRepository.findAll() + "\n");
+				+ " method was used.\nReturning collection: "
+					+ itemRepository + "\n");
 		return itemRepository.findAll();
 	}
 	
 	public static Item getItem(ItemRepository itemRepository, long id) {
 		Item item = itemRepository.findById(id).orElse(null);
 		log.info("getItem(ItemRepository, long) method "
-				+ "was used. Returning item: " + item + "\n");
+				+ "was used.\nReturning item: " + item + "\n");
 		return item;
 	}
 	
@@ -31,8 +31,8 @@ public class Service {
 		Item item = new Item(createItemCommand.getName(),
 				createItemCommand.getPriceEuros(), createItemCommand.getPriceCents());
 		itemRepository.save(item);
-		log.info("createItem(ItemRepository , CreateItemCommand) method was "
-				+ "used. Returning String: " + "Created item: " + item + "\n");
+		log.info("createItem(ItemRepository, CreateItemCommand) method was "
+				+ "used.\nReturning String: " + "\"Created item: " + item + "\"\n");
 		return "Created item: " + item;
 	}
 	
@@ -40,13 +40,13 @@ public class Service {
 		Item item = itemRepository.findById(id).orElse(null);
 		
 		log.info("deleteItem(ItemRepository, long) method was "
-				+ "used. returning String: ");
+				+ "used.\nreturning String: \"");
 		if (item != null) {
 			itemRepository.deleteById(id);
-			log.info(item.toString() + "\n");
+			log.info(item.toString() + "\"\n");
 			return item.toString();
 		} else {
-			log.info("No item deleted. There is no item with id: " + id + "\n");
+			log.info("No item deleted. There is no item with id: " + id + "\"\n");
 			return "No item deleted. There is no item with id: " + id + "\n";
 		}
 	}
