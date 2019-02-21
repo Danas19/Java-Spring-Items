@@ -13,8 +13,8 @@ public class Service {
 	private static final Logger log = LoggerFactory.getLogger(Service.class);
 	
 	public static Collection<Item> getItems(ItemRepository itemRepository) {
-		log.info("getItems(ItemRepository)"
-				+ " method was used.\nReturning collection: "
+		log.info("getItems(ItemRepository) method was used passing: "
+				+ itemRepository + ".\nReturning collection: "
 					+ itemRepository + "\n");
 		return itemRepository.findAll();
 	}
@@ -22,7 +22,7 @@ public class Service {
 	public static Item getItem(ItemRepository itemRepository, long id) {
 		Item item = itemRepository.findById(id).orElse(null);
 		log.info("getItem(ItemRepository, long) method "
-				+ "was used.\nReturning item: " + item + "\n");
+				+ "was used passing: " + id + "L.\nReturning item: " + item + "\n");
 		return item;
 	}
 	
@@ -32,15 +32,16 @@ public class Service {
 				createItemCommand.getPriceEuros(), createItemCommand.getPriceCents());
 		itemRepository.save(item);
 		log.info("createItem(ItemRepository, CreateItemCommand) method was "
-				+ "used.\nReturning String: " + "\"Created item: " + item + "\"\n");
+				+ "used passing: " + itemRepository + ", " + createItemCommand + 
+					".\nReturning String: " + "\"Created item: " + item + "\"\n");
 		return "Created item: " + item;
 	}
 	
 	public static String deleteItem(ItemRepository itemRepository, long id) {
 		Item item = itemRepository.findById(id).orElse(null);
 		
-		log.info("deleteItem(ItemRepository, long) method was "
-				+ "used.\nreturning String: \"");
+		log.info("deleteItem(ItemRepository, long) method was used passing: "
+				+ itemRepository + ", " + id + "L.\nreturning String: \"");
 		if (item != null) {
 			itemRepository.deleteById(id);
 			log.info(item.toString() + "\"\n");

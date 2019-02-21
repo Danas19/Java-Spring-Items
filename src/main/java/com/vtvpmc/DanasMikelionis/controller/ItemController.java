@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vtvpmc.DanasMikelionis.Application;
 import com.vtvpmc.DanasMikelionis.CreateItemCommand;
 import com.vtvpmc.DanasMikelionis.model.Item;
 import com.vtvpmc.DanasMikelionis.repository.ItemRepository;
