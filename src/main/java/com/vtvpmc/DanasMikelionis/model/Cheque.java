@@ -4,26 +4,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Shop {
+public class Cheque {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	private String name;
+	private long cashRegisterId;
 	
-	protected Shop() { }
+	protected Cheque() { }
 	
-	public Shop(long id, String name, String streetAddress, String country,
-			String city) {
+	public Cheque(long id, long cashRegisterId) {
 		this.id = id;
-		this.name = name;
+		this.cashRegisterId = cashRegisterId;
 	}
 
 	public long getId() {
 		return id;
 	}
 
-	public String getName() {
-		return name;
+	public long getCashRegisterId() {
+		return cashRegisterId;
 	}
 	
 }
