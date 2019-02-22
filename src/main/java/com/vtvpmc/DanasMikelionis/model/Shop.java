@@ -13,7 +13,7 @@ public class Shop {
 	private String country;
 	private String city;
 	
-	public Shop() { }
+	protected Shop() { }
 	
 	public Shop(long id, String name, String streetAddress, String country,
 			String city) {
