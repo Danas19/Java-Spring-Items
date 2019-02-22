@@ -22,7 +22,7 @@ public class Service {
 	public static Item getItem(ItemRepository itemRepository, long id) {
 		Item item = itemRepository.findById(id).orElse(null);
 		log.info("getItem(ItemRepository, long) method "
-				+ "was used \n\tpassed to this method: " + itemRepository + ", " + id + "L."
+				+ "was used. \n\tPassed to this method: " + itemRepository + ", " + id + "L."
 						+ "\n\tReturning item: " + item + "\n");
 		return item;
 	}
@@ -34,7 +34,7 @@ public class Service {
 		itemRepository.save(item);
 		log.info("createItem(ItemRepository, CreateItemCommand) method was "
 				+ "used \n\tpassed to this method: " + itemRepository + ", " + createItemCommand 
-						+ ".\n\tpassed Item to method save(Item) in ItemRepository " + item
+						+ ".\n\tPassed Item to method save(Item) in ItemRepository " + item
 							+ "\n\tReturning String: " + "\"Created item: " + item + "\"\n");
 		return "Created item: " + item;
 	}
@@ -44,7 +44,7 @@ public class Service {
 		if (item != null) {
 			itemRepository.deleteById(id);
 			log.info("deleteItem(ItemRepository, Long) method was used \n\tpassed to this method: "
-					+ itemRepository + ", " + id + "L.\n\tpassed to itemRepository.deleteById(Long): "
+					+ itemRepository + ", " + id + "L.\n\tPassed to itemRepository.deleteById(Long): "
 						+ id + "\n\tReturning String: \"item.toString() + \"\\\"\\n\"");
 			return item.toString();
 		} else {
@@ -52,7 +52,6 @@ public class Service {
 					+ itemRepository + ", " + id + "L.\n\t"
 							+ "\n\tReturning String: \"No item deleted. There is no item with id: "
 								+ id + "\"\n");
-			log.info("");
 			return "No item deleted. There is no item with id: " + id;
 		}
 	}
